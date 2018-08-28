@@ -27,14 +27,8 @@ let users = [
   }
 ];
 
-app.get('/', (req, res) => {
-  try {
-    let token = req.cookies.token;
-    let data = jwt.verify(token, process.env.JWTSECRET);
-    res.redirect('/home');
-  } catch (err) {
-    res.render('login');
-  }
+app.get('/login', (req, res) => {
+  res.render('login');
 });
 
 app.post('/', (req, res) => {
@@ -53,7 +47,7 @@ app.post('/', (req, res) => {
   if(!auth) {
     return res.render('login', {message:"bad login"});
   }
-  res.redirect('/home');
+  res.redirect('/');
 });
 
 app.use('/', (req, res, next) => {
@@ -62,13 +56,16 @@ app.use('/', (req, res, next) => {
     let data = jwt.verify(token, process.env.JWTSECRET);
     next();
   } catch (err) {
-    res.redirect('/');
+    res.redirect('/login');
   }
 });
 
-app.get('/home', (req, res) => {
-  res.render('index', {name: 'Grant'});
-})
+app.get('/', (req, res) => {
+  let context = {
+    name: 'Grant'
+  };
+  res.render('index', context);
+});
 
 app.get('/bug', (req, res) => {
   res.sendStatus(200);
