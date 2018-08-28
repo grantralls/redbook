@@ -1,0 +1,24 @@
+{
+  "name": "redbook",
+  "version": "1.0.0",
+  "description": "Multi-functional web app to replace the red binder at CFA",
+  "main": "main.js",
+  "scripts": {
+    "start": "node main.js"
+  },
+  "repository": {},
+  "author": "Grant",
+  "license": "ISC",
+  "dependencies": {
+    "body-parser": "^1.18.3",
+    "bootstrap": "^4.1.2",
+    "express": "^4.16.3",
+    "jquery": "^3.3.1",
+    "nodemon": "^1.18.3",
+    "popper.js": "^1.14.3",
+    "pug": "^2.0.3"
+  },
+  "engines": {
+    "node": "10.7.0"
+  }
+}
