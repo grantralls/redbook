@@ -1,6 +1,7 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const PORT = process.env.PORT || 3000;
 
 const app = express();
 
@@ -29,6 +30,6 @@ app.post('/', (req, res) => {
   res.redirect('/');
 });
 
-app.listen(3000, () => {
+app.listen(PORT, () => {
   console.log('server started on port 3000');
 })
