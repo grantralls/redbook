@@ -30,8 +30,8 @@ let users = [
 app.get('/', (req, res) => {
   try {
     let token = req.cookies.token;
-    jwt.verify(token, process.env.JWTSECRET);
-    res.render('index');
+    let data = jwt.verify(token, process.env.JWTSECRET);
+    res.redirect('/home');
   } catch (err) {
     res.render('login');
   }
@@ -53,9 +53,25 @@ app.post('/', (req, res) => {
   if(!auth) {
     return res.render('login', {message:"bad login"});
   }
-  
-  res.redirect('/');
+  res.redirect('/home');
+});
 
+app.use('/', (req, res, next) => {
+  try {
+    let token = req.cookies.token;
+    let data = jwt.verify(token, process.env.JWTSECRET);
+    next();
+  } catch (err) {
+    res.redirect('/');
+  }
+});
+
+app.get('/home', (req, res) => {
+  res.render('index', {name: 'Grant'});
+})
+
+app.get('/bug', (req, res) => {
+  res.sendStatus(200);
 });
 
 app.listen(PORT, () => {});
