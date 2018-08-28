@@ -4,7 +4,7 @@
   "description": "Multi-functional web app to replace the red binder at CFA",
   "main": "main.js",
   "scripts": {
-    "start": "node main.js"
+    "start": "nodemon"
   },
   "repository": {},
   "author": "Grant",
@@ -12,8 +12,10 @@
   "dependencies": {
     "body-parser": "^1.18.3",
     "bootstrap": "^4.1.2",
+    "cookie-parser": "^1.4.3",
     "express": "^4.16.3",
     "jquery": "^3.3.1",
+    "jsonwebtoken": "^8.3.0",
     "nodemon": "^1.18.3",
     "popper.js": "^1.14.3",
     "pug": "^2.0.3"

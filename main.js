@@ -1,6 +1,8 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
+const jwt = require('jsonwebtoken');
+const cookieParser = require('cookie-parser');
 const PORT = process.env.PORT || 3000;
 
 const app = express();
@@ -16,20 +18,44 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use(bodyParser.urlencoded({ extended: false }));
 app.use(bodyParser.json());
 
+app.use(cookieParser());
+
+let users = [
+  {
+    'username': 'Grant',
+    'password': 'admin'
+  }
+];
 
 app.get('/', (req, res) => {
-  res.render('index');
-});
-
-app.get('/post', (req, res) =>{
-  res.render('post')
+  try {
+    let token = req.cookies.token;
+    jwt.verify(token, process.env.JWTSECRET);
+    res.render('index');
+  } catch (err) {
+    res.render('login');
+  }
 });
 
 app.post('/', (req, res) => {
-  console.log(req.body.title);
+  let auth = users.some((user, i) => {
+    if(req.body.username == user.username && req.body.password == user.password) {
+      let token = jwt.sign({
+        'username': user.username,
+      }, process.env.JWTSECRET);
+      res.cookie('token', token);
+      return true;
+    } else {
+      return false;
+    }
+  });
+
+  if(!auth) {
+    return res.render('login', {message:"bad login"});
+  }
+  
   res.redirect('/');
+
 });
 
-app.listen(PORT, () => {
-  console.log('server started on port 3000');
-})
+app.listen(PORT, () => {});
