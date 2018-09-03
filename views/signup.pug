@@ -1,9 +1,12 @@
 extends layout
 
 block content
-        form.login-form.text-center(action="/login", method="post")
+    .login-form.text-center
+        form(action="/signup", method="post")
             .form-group
                 input.form-control(type="text", name="username" placeholder="Username")
+            .form-group
+                input.form-control(type="text", name="name" placeholder="Name")
             .form-group
                 input.form-control(type="password", name="password" placeholder="password")
             

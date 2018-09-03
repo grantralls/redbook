@@ -1,0 +1,51 @@
+extends layout
+
+block content
+    form.createcount(action="/createcount", method="post")
+        h1.text-center(style="border-bottom: 1px solid black;") Create Safe Count
+        .row
+            .col-lg-6(style="border-right: 1px solid black;")
+                .row
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="pennies" placeholder="Pennies (# rolls)" required=true)
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="nickles" placeholder="Nickles (# rolls)" required=true)
+                .row
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="dimes" placeholder="Dimes (# rolls)" required=true)
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="quarters" placeholder="Quarters (# rolls)" required=true)
+                .row
+                    .col-lg-6
+                        .form-group
+                            select.custom-select(name="countType")
+                                option(value="Open" selected) Open
+                                option(value="Crossover") Crossover
+                                option(value="Close") Close
+                    .col-lg-6
+                        .row
+                            .col-lg-6
+                                input.form-control(type="number", name="month" placeholder="month (MM)" required=true)
+                            .col-lg-6
+                                input.form-control(type="number", name="day" placeholder="Day (dd)" required=true)
+
+            .col-lg-6(style="border-left: 1px solid black;")
+                .row
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="ones" placeholder="Ones ($ Amount)" required=true)
+                    .col-lg-6
+                        .form-group
+                            input.form-control(type="number", name="fives" placeholder="Fives ($ Amount)" required=true)
+                .row
+                    .col-lg-6
+                        h5.text-center Safe Total: #{ safeTotal }
+                    .col-lg-6
+                        h5.text-center Other Change Fund: #{ otherChangeFund }
+        .row
+            .col-lg-12.text-right 
+                input.btn.btn-primary#createCount(type="submit", value="Submit")

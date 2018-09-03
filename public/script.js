@@ -1,1 +1,3 @@
-console.log("loaded");
+$('input#createCount').on('click', () => {
+    console.log('clicky boi.');
+});
