@@ -157,4 +157,18 @@ app.post('/createcount', (req, res) => {
   res.render('createcount', context);
 });
 
+app.get('/viewcounts', (req, res) => {
+  counts.find({}, (err, result) => {
+    let context = {data: result};
+    res.render('viewcounts', context);
+  });
+});
+
+app.get('/viewcount', (req, res) => {
+  counts.findOne({ _id: req.query.id }, (err, result) => {
+    let context = { data: result };
+    res.render('viewcount', context);
+  });
+});
+
 app.listen(PORT, () => {});

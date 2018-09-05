@@ -35,3 +35,14 @@ form.createcount {
   border-radius: 10px;
   filter: drop-shadow(1px 1px 20px #a8a8a8);
 }
+
+.viewcounts {
+  background-color: white;
+  margin-top: 50px;
+  border-radius: 10px;
+  filter: drop-shadow(1px 1px 20px #a8a8a8);
+  padding-top: 15px;
+}
+
+.viewrow {
+}
