@@ -10,7 +10,7 @@ block content
             .col-4.text-center
                 p Manager
         each entry in data
-            a(href="/viewcount?id=" + entry._id)
+            a(href="/viewcounts?id=" + entry._id)
                 .row.viewrow
                     .col-4.text-center
                         p #{ entry.day[0].month }/#{ entry.day[0].day }

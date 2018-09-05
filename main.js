@@ -132,16 +132,35 @@ app.post('/createcount', (req, res) => {
 });
 
 app.get('/viewcounts', (req, res) => {
-  counts.find({}, (err, result) => {
-    let context = {data: result};
-    res.render('viewcounts', context);
-  });
+  if(req.query.id) {
+    counts.findOne({ _id: req.query.id }, (err, result) => {
+      if(result) {
+        let context = { data: result };
+        res.render('viewcount', context);
+      }
+    });
+  } else {
+    counts.find({}, (err, result) => {
+      if(result.length != 0) {
+        let context = { data: result };
+        res.render('viewcounts', context);
+      } else {
+        res.sendStatus(404);
+      }
+    });
+  }
 });
 
-app.get('/viewcount', (req, res) => {
+app.get('/editcount', (req, res) => {
   counts.findOne({ _id: req.query.id }, (err, result) => {
-    let context = { data: result };
-    res.render('viewcount', context);
+    if(result) {
+      let context = {
+        data: result
+      };
+      res.render('editcount', context);
+    } else {
+      res.sendStatus(404);
+    }
   });
 });
 
