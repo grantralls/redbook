@@ -44,5 +44,10 @@ form.createcount {
   padding-top: 15px;
 }
 
-.viewrow {
+.count {
+  padding: 30px;
+  margin-top: 50px;
+  background-color: white;
+  border-radius: 10px;
+  filter: drop-shadow(1px 1px 20px #a8a8a8);
 }

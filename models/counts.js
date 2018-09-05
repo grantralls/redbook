@@ -5,7 +5,7 @@ let countSchema = new Schema({
     countType: String,
     day: [{ month: Number, day: Number }],
     pennies: [{ rolls: Number, moneyAmount: Number }],
-    nickles: [{ rolls: Number, moneyAmount: Number }],
+    nickels: [{ rolls: Number, moneyAmount: Number }],
     dimes: [{ rolls: Number, moneyAmount: Number }],
     quarters: [{ rolls: Number, moneyAmount: Number }],
     ones: [{ moneyAmount: Number }],

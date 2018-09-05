@@ -1,4 +1,20 @@
 extends layout
 
 block content
-    h5 Signed by #{ data.manager }
+    .container.count
+        .row
+            .col-lg-12
+                h1 Safe #{ data.countType }
+                p signed by: #{ data.manager }
+                p signed on: #{ data.day[0].month }/#{ data.day[0].day }
+                h5 Penny rolls: #{ data.pennies[0].rolls } = $#{ data.pennies[0].moneyAmount }
+                h5 Nickel rolls: #{ data.nickels[0].rolls } = $#{ data.nickels[0].moneyAmount }
+                h5 Dime rolls: #{ data.dimes[0].rolls } = $#{ data.dimes[0].moneyAmount }
+                h5 Quarter rolls: #{ data.quarters[0].rolls } = $#{ data.quarters[0].moneyAmount }
+                h5 Ones: $#{ data.ones[0].moneyAmount }
+                h5 Fives: $#{ data.fives[0].moneyAmount }
+                h5 Change Drawer: $#{ data.changeDrawer }
+                h5 Cashier Tills: $#{ data.cashierTills }
+                hr
+                h3 Safe Total: $#{ data.safeTotal }
+                h3 Other Change Fund: $#{ data.otherChangeFund }

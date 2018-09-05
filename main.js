@@ -92,32 +92,6 @@ app.get('/', (req, res) => {
   res.render('index', context);
 });
 
-app.get('/bug', (req, res) => {
-  users.findOne({username: res.locals.tokenData.username, isManager: true}, (err, result) => {
-    if(result) {
-      let newCount = new counts({
-        countType: "Open",
-        day: [{ month: 1, day: 27 }],
-        pennies: [{ rolls: 5, moneyAmount: 28 }],
-        nickles: [{ rolls: 5, moneyAmount: 235 }],
-        dimes: [{ rolls: 5, moneyAmount: 2435 }],
-        quarters: [{ rolls: 5, moneyAmount: 4523 }],
-        ones: [{ rolls: 5, moneyAmount: 2345 }],
-        fives: [{ rolls: 5, moneyAmount: 2043985 }],
-        safeTotal: 273048,
-        otherChangeFund: 8000,
-        drawerCount: true,
-        manager: res.locals.tokenData.name
-      });
-      newCount.save();
-      res.sendStatus(200);
-    } else {
-      console.log("whomst?");
-      res.sendStatus(403);
-    }
-  });
-});
-
 app.get('/createcount', (req, res) => {
   res.render('createcount');
 });
@@ -125,11 +99,11 @@ app.get('/createcount', (req, res) => {
 app.post('/createcount', (req, res) => {
   let moneyAmount = [
     req.body.pennies / 2,
-    req.body.nickles * 2,
+    req.body.nickels * 2,
     req.body.dimes * 5,
     req.body.quarters * 10,
   ];
-
+  console.log(moneyAmount);
   let safeTotal;
   safeTotal = moneyAmount.reduce((a, b) => a + b, 0);
   safeTotal += parseInt(req.body.ones) + parseInt(req.body.fives);
@@ -143,7 +117,7 @@ app.post('/createcount', (req, res) => {
     countType: req.body.countType,
     day: [{ month: req.body.month, day: req.body.day }],
     pennies: [{ rolls: req.body.pennies, moneyAmount: moneyAmount[0] }],
-    nickles: [{ rolls: req.body.nickles, moneyAmount: moneyAmount[1] }],
+    nickels: [{ rolls: req.body.nickels, moneyAmount: moneyAmount[1] }],
     dimes: [{ rolls: req.body.dimes, moneyAmount: moneyAmount[2] }],
     quarters: [{ rolls: req.body.quarters, moneyAmount: moneyAmount[3] }],
     ones: [{ moneyAmount: req.body.ones }],
