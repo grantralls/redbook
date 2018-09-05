@@ -6,13 +6,14 @@ block content
             .col-6
                 h1 Safe #{ data.countType }
             .col-6.text-right
-                a(href="/viewcounts?id=" + data._id) Back
+                a(href="/viewcounts?id=" + data._id) Cancel
         .row
             .col-lg-12
                 form(action="#", method="post")
                     .form-group
-                        p(style="display: inline; margin-right: 20px;") Signed by:
-                        input.form-control(style="width:50%; display: inline;" type="text", name="manager" value=data.manager required=true)
+                        p(style="display: inline; margin-right: 20px;") Signed on:
+                        input.form-control(style="width:50%; display: inline;" type="text" id="manager" name="manager" value=data.manager required=true)/
+                        input.form-control(style="width:50%; display: inline;" type="text" )
                 p signed on: #{ data.day[0].month }/#{ data.day[0].day }
                 h5 Penny rolls: #{ data.pennies[0].rolls } = $#{ data.pennies[0].moneyAmount }
                 h5 Nickel rolls: #{ data.nickels[0].rolls } = $#{ data.nickels[0].moneyAmount }
